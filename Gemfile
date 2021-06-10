@@ -6,7 +6,7 @@ ruby '>= 2.4.0', '< 2.7.0'
 gem 'pkg-config', '~> 1.3'
 
 gem 'puma', '~> 5.0'
-gem 'rails', '6.0.3.4'
+gem 'rails', '6.0.3.7'
 gem 'thor', '~> 0.20'
 
 gem 'hamlit-rails', '~> 0.2'
