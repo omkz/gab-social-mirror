@@ -120,19 +120,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   end
 
-  # This uses the vagrant-hostsupdater plugin, and lets you
-  # access the development site at http://gabsocial.local.
-  # If you change it, also change it in .env.vagrant before provisioning
-  # the vagrant server to update the development build.
-  #
-  # To install:
-  #   $ vagrant plugin install vagrant-hostsupdater
+  # add 192.168.50.4 gabsocial.local
+  # in /etc/hosts host machine
   config.vm.hostname = "gabsocial.local"
-
-  if defined?(VagrantPlugins::HostsUpdater)
-    config.vm.network :private_network, ip: "192.168.42.42", nictype: "virtio"
-    config.hostsupdater.remove_on_suspend = false
-  end
+  config.vm.network "private_network", ip: "192.168.50.4"
 
   if config.vm.networks.any? { |type, options| type == :private_network }
     config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp', 'actimeo=1']

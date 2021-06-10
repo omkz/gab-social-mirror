@@ -84,6 +84,8 @@ Rails.application.configure do
 
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  config.hosts << "gabsocial.local"
+
   config.after_initialize do
     Bullet.enable        = true
     Bullet.bullet_logger = true
