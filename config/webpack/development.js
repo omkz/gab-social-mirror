@@ -27,7 +27,7 @@ module.exports = merge(sharedConfig, {
   },
 
   devServer: {
-    socket: 'socket',
+    // socket: 'socket',
     clientLogLevel: 'none',
     compress: settings.dev_server.compress,
     quiet: settings.dev_server.quiet,

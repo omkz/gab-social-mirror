@@ -18,12 +18,13 @@ Rails.application.config.content_security_policy do |p|
   p.manifest_src    :self, assets_host
 
   if Rails.env.development?
-    p.script_src :self, :https, :unsafe_eval
-    p.default_src :self, :https, :unsafe_eval
-    p.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035'
+    webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
+
+    p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls, "https://*.gab.com"
+    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, "https://*.gab.com"
   else
-    p.script_src :self, :https
-    p.default_src :self, :https
+    p.connect_src :self, :blob, assets_host, Rails.configuration.x.streaming_api_base_url, "https://*.gab.com"
+    p.script_src  :self, assets_host, "https://*.gab.com"
   end
 end
 
